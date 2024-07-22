@@ -23,6 +23,11 @@ body{
     border-radius: 10%;
 }
 
+.custom-box.hide{
+    display: none;
+}
+
+
 .home-box h3{
     font-size: 18px;
     color: #000000;
@@ -61,4 +66,59 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     cursor: pointer;
+    display: inline-block;
+}
+
+
+.quiz-box .question-number{
+    font-size: 18px;
+    color: #009688;
+    font-weight: 600;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 10px;
+    line-height: 25px;
+
+}
+.quiz-box .question-text{
+    font-size: 22px;
+    color: #000000;
+    line-height: 28px;
+    font-weight: 400;
+    padding: 20px 0;
+    margin: 0;
+}
+.quiz-box .option-container{}
+
+.quiz-box .option-container .option{
+    background-color: #cccccc;
+    padding: 15px;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+}
+
+.quiz-box .btn{
+    margin: 15px 0;
+}
+
+
+/* this is style for the 5 small box  */
+
+.quiz-box .answers-indicator{
+    border-top: 1px solid #cccccc;
+}
+
+.quiz-box .answers-indicator div{
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    background-color: #cccccc;
+    border-radius: 50%;
+    margin-right: 3px;
+    margin-top: 15px;
+
 }
