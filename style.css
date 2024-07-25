@@ -100,7 +100,6 @@ body{
 
 
 
-
 .quiz-box .question-text{
     font-size: 22px;
     color: #000000;
@@ -121,9 +120,21 @@ body{
     margin-bottom: 10px;
     cursor: pointer;
     text-transform: capitalize;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
 
 }
 
+@keyframes fadeIn{
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity: 1;
+    }
+
+
+}
 .quiz-box .btn{
     margin: 15px 0;
 }

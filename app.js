@@ -1,8 +1,7 @@
 
-
 const questionNumber = document.querySelector(".question-number");
 const questionText = document.querySelector(".question-text");
-const optionContainer = document.querySelector("option-container");
+const optionContainer = document.querySelector(".option-container");
 
 let questionCounter = 0;
 let currentQuestions;
@@ -17,7 +16,7 @@ function setAvailableQuestions(){
     }
 }
 
-// swr question number number and question and options
+// set question number number and question and options
 function getNewQuestion(){
     // set question number
     questionNumber.innerHTML = "Question" + (questionCounter + 1) + " of " + quiz.length;
@@ -39,12 +38,28 @@ function getNewQuestion(){
     const optionLen = currentQuestions.options.length
     // push options into availableOptions Array
     for(let i=0; i<optionLen; i++){
-        
+        availableOptions.push(i)
+    }
 
+    let animationDelay = 0.2;
+    // create options in HTML
+    for(let i = 0; i<optionLen; i++){
+        // random option
+        const optionIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
+        // get the position of 'optionIndex' from the availableOptions
+        const index2 = availableOptions.indexOf(optionIndex);
 
+        // remove the 'optionIndex' from the availableOptions so that the option does not repeat
+        availableOptions.splice(index2,1)
+        const option = document.createElement("div");
+        option.innerHTML = currentQuestions.options[optionIndex];
+        option.id = optionIndex;
+        option.className = "option";
+        optionContainer.appendChild(option)
     }
     questionCounter++
 }
+
 
 function next(){
     if(questionCounter === quiz.length){
@@ -53,10 +68,7 @@ function next(){
     else{
         getNewQuestion();
     }
-
-
 }
-
 
 
 window.onload = function(){
