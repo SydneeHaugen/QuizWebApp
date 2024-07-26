@@ -41,7 +41,7 @@ function getNewQuestion(){
         availableOptions.push(i)
     }
 
-    let animationDelay = 0.2;
+    let animationDelay = 0.15;
     // create options in HTML
     for(let i = 0; i<optionLen; i++){
         // random option
@@ -54,10 +54,29 @@ function getNewQuestion(){
         const option = document.createElement("div");
         option.innerHTML = currentQuestions.options[optionIndex];
         option.id = optionIndex;
+        option.style.animationDelay = animationDelay + 's';
+        animationDelay = animationDelay + 0.15;
         option.className = "option";
         optionContainer.appendChild(option)
+        option.setAttribute("onclick", "getResult(this)");
     }
     questionCounter++
+}
+
+
+// get the result of current attempt question 
+function getResult(element){
+    const id = parseInt(element.id);
+   
+    // get the answer by comparing the id of clicked option 
+    if(id === currentQuestions.answer){
+        // set the green color to the correct option
+        element.classList.add("correct");
+    }
+    else{
+        console.log("answer is wrong");
+    }
+
 }
 
 

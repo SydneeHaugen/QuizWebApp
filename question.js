@@ -20,12 +20,12 @@ const quiz = [
     {
         q: 'What time of day we have breakfast?',
         options:['In the afternoon', 'in the evening','In the moreing'],
-        answer:0
+        answer:2
     },
     {
         q: 'What is 22 + 6?',
         options:['99','56','16','28'],
-        answer:2
+        answer:3
     },
 
 
