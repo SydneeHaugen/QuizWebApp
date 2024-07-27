@@ -2,6 +2,7 @@
 const questionNumber = document.querySelector(".question-number");
 const questionText = document.querySelector(".question-text");
 const optionContainer = document.querySelector(".option-container");
+const answersIndicatorContainer = document.querySelector(".answers-indicator");
 
 let questionCounter = 0;
 let currentQuestions;
@@ -41,6 +42,8 @@ function getNewQuestion(){
         availableOptions.push(i)
     }
 
+    optionContainer.innerHTML = '';
+
     let animationDelay = 0.15;
     // create options in HTML
     for(let i = 0; i<optionLen; i++){
@@ -63,7 +66,6 @@ function getNewQuestion(){
     questionCounter++
 }
 
-
 // get the result of current attempt question 
 function getResult(element){
     const id = parseInt(element.id);
@@ -74,7 +76,35 @@ function getResult(element){
         element.classList.add("correct");
     }
     else{
-        console.log("answer is wrong");
+        // set the red color to the incorrect option
+        element.classList.add("wrong");
+
+        // if the answer is incorrect the show the correct option by adding green color the correct option
+        const optionLen = optionContainer.children.length;
+        for(let i=0; i<optionLen; i++){
+            if(parseInt(optionContainer.children[i].id) == currentQuestions.answer){
+                optionContainer.children[i].classList.add("correct");
+            }
+        }
+    }
+    unclickablieOptions();
+}
+
+// make all the options unclickable once the user select a option (RESTRICT THE USER TO CHANGE THE OPTION AGAIN)
+function unclickablieOptions(){
+    const optionLen = optionContainer.children.length;
+
+    for(let i=0; i<optionLen; i++){
+        optionContainer.children[i].classList.add("already-answered");
+    }
+}
+
+function answersIndicator(){
+    const totalQuestion = quiz.length;
+    for(let i=0; i<totalQuestion; i++){
+        const indicator = document.createElement("div");
+        answersIndicatorContainer.appendChild(indicator);
+        
     }
 
 }
@@ -96,4 +126,7 @@ window.onload = function(){
     setAvailableQuestions();
     // second we will call getNewQuestion(); function
     getNewQuestion();
+
+    // to create indicator of answers
+    answerIndicator();
 }
