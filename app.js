@@ -16,6 +16,7 @@ let availableOptions = [];
 let correctAnswers = 0;
 let attempt = 0;
 
+
 // push the questions into availableQuestions array 
 function setAvailableQuestions(){
     const totalQuestion = quiz.length;
@@ -56,10 +57,10 @@ function getNewQuestion(){
     for(let i = 0; i<optionLen; i++){
         // random option
         const optionIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
-        // get the position of 'optionIndex' from the availableOptions
+        // get the position of 'optionIndex' from the availableOptions Array
         const index2 = availableOptions.indexOf(optionIndex);
 
-        // remove the 'optionIndex' from the availableOptions so that the option does not repeat
+        // remove the 'optionIndex' from the availableOptions Array, so that the option does not repeat
         availableOptions.splice(index2,1)
         const option = document.createElement("div");
         option.innerHTML = currentQuestions.options[optionIndex];
@@ -85,8 +86,6 @@ function getResult(element){
         // add the indicator to correct mark
         updateAnswerIndicator("correct");
         correctAnswers++;
-        console.log("correct: " + correctAnswers)
-
     }
     else{
         // set the red color to the incorrect option
@@ -94,9 +93,6 @@ function getResult(element){
 
         // add the indicator to wrong mark
         updateAnswerIndicator("wrong");
-
-
-
 
         // if the answer is incorrect the show the correct option by adding green color the correct option
         const optionLen = optionContainer.children.length;
@@ -137,13 +133,8 @@ function updateAnswerIndicator(markType){
 }
 
 
-
-
-
-
 function next(){
     if(questionCounter === quiz.length){
-        console.log("quiz over");
         quizOver();
     }
     else{
@@ -154,7 +145,7 @@ function next(){
 
 function quizOver(){
 
-    // hide quiz quizBox
+    // hide quiz Box
     quizBox.classList.add("hide");
     // show result Box
     resultBox.classList.remove("hide");
@@ -175,14 +166,44 @@ function quizResult(){
 
 }
 
-function tryAgainQuiz(){
+function resetQuiz(){
+    questionCounter = 0;
+    correctAnswers = 0;
+    attempt = 0;
 
 }
 
 
 
+function tryAgainQuiz(){
+    // hide the resultBox
+    resultBox.classList.add("hide");
+    // show the quizBox
+    quizBox.classList.remove("hide");
+    resetQuiz();
+    startQuiz();
 
-window.onload = function(){
+}
+
+function goToHome(){
+
+    // hide the resultBox
+    resultBox.classList.add("hide");
+    // show the quizBox
+    homeBox.classList.remove("hide");
+    resetQuiz();
+
+}
+
+
+// #### STARTING POINT ####
+function startQuiz(){
+
+    // hide howe box
+    homeBox.classList.add("hide");
+    // show the quizBox
+    quizBox.classList.remove("hide");
+
 
     // first we will set all questions in availableQuestion array 
     setAvailableQuestions();
@@ -193,3 +214,8 @@ window.onload = function(){
     // to create indicator of answers
     answersIndicator();
 }
+
+window.onload = function (){
+    homeBox.querySelector(".total-questions").innerHTML = quiz.length;
+}
+

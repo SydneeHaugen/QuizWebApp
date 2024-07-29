@@ -26,8 +26,7 @@ const quiz = [
         q: 'What is 22 + 6?',
         options:['99','56','16','28'],
         answer:3
-    },
-
+    }
 
 
 ]

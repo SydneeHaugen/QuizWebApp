@@ -21,7 +21,24 @@ body{
     margin: 40px auto;
     padding: 30px;
     border-radius: 10%;
+    animation: fadeInRight 1s ease;
+
 }
+
+@keyframes fadeInRight{
+    0%{
+        transform: translateX(40px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+
+
+}
+
+
 
 .custom-box::before,
 .custom-box::after{
@@ -128,11 +145,9 @@ body{
 }
 
 
-
 .quiz-box .option-container .option.already-answered{
     pointer-events: none;
 }
-
 
 
 @keyframes fadeIn{
@@ -225,10 +240,6 @@ body{
 
 }
 
-
-
-
-
 .result-box{
     text-align: center;
 }
@@ -266,3 +277,13 @@ body{
     margin-right: 20px;
 }
 
+@media(max-width: 767px){
+
+    .result-box .btn{
+        margin-bottom: 15px;
+    }
+    body{
+        padding: 15px;
+    }
+
+}
