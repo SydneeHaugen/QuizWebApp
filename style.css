@@ -1,5 +1,8 @@
 
 
+
+/* The body and * selectors set the basic styles for the page, 
+    including margin, padding, font settings, and box-sizing. */
 body{
     margin: 0;
     font-size: 16px;
@@ -15,6 +18,8 @@ body{
     outline: none;
 }
 
+/*.custom-box sets styles for the main containers 
+    (home-box, quiz-box, result-box */ 
 .custom-box{
     max-width: 700px;
     background-color: #ced7e0;
@@ -24,20 +29,6 @@ body{
     animation: fadeInRight 1s ease;
 
 }
-
-@keyframes fadeInRight{
-    0%{
-        transform: translateX(40px);
-        opacity: 0;
-    }
-    100%{
-        transform: translateX(0px);
-        opacity: 1;
-    }
-
-
-}
-
 
 
 .custom-box::before,
@@ -239,10 +230,6 @@ body{
 
 
 }
-
-
-
-
 
 .result-box{
     text-align: center;

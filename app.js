@@ -1,4 +1,6 @@
 
+// These are DOM elements selected using document.querySelector 
+// which will be manipulated throughout the quiz.
 const questionNumber = document.querySelector(".question-number");
 const questionText = document.querySelector(".question-text");
 const optionContainer = document.querySelector(".option-container");
@@ -7,14 +9,12 @@ const homeBox = document.querySelector(".home-box");
 const quizBox = document.querySelector(".quiz-box");
 const resultBox = document.querySelector(".result-box");
 
-
-
-let questionCounter = 0;
-let currentQuestions;
-let availableQuestions = [];
-let availableOptions = [];
-let correctAnswers = 0;
-let attempt = 0;
+let questionCounter = 0; // Keeps track of the current question number.
+let currentQuestions; // Stores the current question object.
+let availableQuestions = []; // Array that holds the questions yet to be asked.
+let availableOptions = []; // Array that holds the options for the current question
+let correctAnswers = 0; // Keeps track of the number of correct answers.
+let attempt = 0;  // Tracks the number of attempts the user has made.
 
 
 // push the questions into availableQuestions array 
@@ -26,6 +26,16 @@ function setAvailableQuestions(){
 }
 
 // set question number number and question and options
+
+    // This function sets up a new question by:
+    // Updating the question number display.
+    // Selecting a random question from availableQuestions and displaying it.
+    // Removing the selected question from availableQuestions to avoid repetition.
+    // Setting up the options for the question and making them clickable.
+    //
+
+
+
 function getNewQuestion(){
     // set question number
     questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of " + quiz.length;
@@ -45,6 +55,7 @@ function getNewQuestion(){
     // set options 
     // get the length of options
     const optionLen = currentQuestions.options.length
+
     // push options into availableOptions Array
     for(let i=0; i<optionLen; i++){
         availableOptions.push(i)
@@ -75,6 +86,13 @@ function getNewQuestion(){
 }
 
 // get the result of current attempt question 
+
+// This function handles the result of an attempted answer:
+    //  Checks if the selected option is correct.
+    //  Updates the display and indicators based on the correctness of the answer.
+    //  Calls unclickablieOptions to prevent changing the answe
+    //
+
 function getResult(element){
     const id = parseInt(element.id);
    
@@ -106,7 +124,9 @@ function getResult(element){
     unclickablieOptions();
 }
 
+
 // make all the options unclickable once the user select a option (RESTRICT THE USER TO CHANGE THE OPTION AGAIN)
+// This function makes all options unclickable after an option is selected.
 function unclickablieOptions(){
     const optionLen = optionContainer.children.length;
 
@@ -115,6 +135,7 @@ function unclickablieOptions(){
     }
 }
 
+// This function sets up indicators for each question.
 function answersIndicator(){
 
     answersIndicatorContainer.innerHTML = '';
@@ -127,12 +148,13 @@ function answersIndicator(){
 
 }
 
+// This function updates the indicator for the current question based on the result.
 function updateAnswerIndicator(markType){
     answersIndicatorContainer.children[questionCounter-1].classList.add(markType)
 
 }
 
-
+// This function loads the next question or ends the quiz if all questions have been answered.
 function next(){
     if(questionCounter === quiz.length){
         quizOver();
@@ -142,7 +164,7 @@ function next(){
     }
 }
 
-
+// This function handles the end of the quiz by hiding the quiz box and showing the result box.
 function quizOver(){
 
     // hide quiz Box
@@ -154,6 +176,7 @@ function quizOver(){
 }
 
 // get the quiz Result
+// This function calculates and displays the quiz results.
 function quizResult(){
     resultBox.querySelector(".total-questions").innerHTML = quiz.length;
     resultBox.querySelector(".total-attempt").innerHTML = attempt;
@@ -162,10 +185,9 @@ function quizResult(){
     const percentage = (correctAnswers/quiz.length) *100;
     resultBox.querySelector(".percentage").innerHTML = percentage.toFixed(2) +"%";
     resultBox.querySelector(".total-score").innerHTML = correctAnswers + " / " + quiz.length;
-
-
 }
 
+// This function resets the quiz variables.
 function resetQuiz(){
     questionCounter = 0;
     correctAnswers = 0;
@@ -173,8 +195,7 @@ function resetQuiz(){
 
 }
 
-
-
+// This function allows the user to try the quiz again by resetting and starting it.
 function tryAgainQuiz(){
     // hide the resultBox
     resultBox.classList.add("hide");
@@ -185,6 +206,7 @@ function tryAgainQuiz(){
 
 }
 
+// This function returns the user to the home screen.
 function goToHome(){
 
     // hide the resultBox
@@ -192,18 +214,17 @@ function goToHome(){
     // show the quizBox
     homeBox.classList.remove("hide");
     resetQuiz();
-
 }
 
 
 // #### STARTING POINT ####
+// This function starts the quiz by setting up the questions and showing the quiz box.
 function startQuiz(){
 
     // hide howe box
     homeBox.classList.add("hide");
     // show the quizBox
     quizBox.classList.remove("hide");
-
 
     // first we will set all questions in availableQuestion array 
     setAvailableQuestions();
@@ -215,6 +236,7 @@ function startQuiz(){
     answersIndicator();
 }
 
+// This function sets the total number of questions on the home screen when the window loads.
 window.onload = function (){
     homeBox.querySelector(".total-questions").innerHTML = quiz.length;
 }
