@@ -1,8 +1,9 @@
 
-
-
 /* The body and * selectors set the basic styles for the page, 
-    including margin, padding, font settings, and box-sizing. */
+    including margin, padding, font settings, and box-sizing. 
+    
+    ///
+*/
 body{
     margin: 0;
     font-size: 16px;

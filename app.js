@@ -1,6 +1,9 @@
 
 // These are DOM elements selected using document.querySelector 
 // which will be manipulated throughout the quiz.
+
+//
+//
 const questionNumber = document.querySelector(".question-number");
 const questionText = document.querySelector(".question-text");
 const optionContainer = document.querySelector(".option-container");
